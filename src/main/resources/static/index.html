@@ -123,13 +123,24 @@
   <main class="container tab-panel active" id="panel-calc">
 
     <section class="card" id="step-config">
-      <h2>Mes appareils</h2>
+      <h2>Configuration des appareils &amp; inventaire</h2>
 
-      <!-- Marketplace -->
+      <!-- Ajout rapide d'appareils standard -->
+      <div class="quick-catalog">
+        <div class="qc-head">
+          <h3>⚡ Ajout rapide d'appareils courants</h3>
+          <p class="muted">Cliquez sur un appareil pour l'ajouter directement à votre inventaire.</p>
+        </div>
+        <div class="qc-chips" id="quick-catalog-chips">
+          <!-- Injecté dynamiquement par JS (Réfrigérateur, Climatiseur, Lave-linge, etc.) -->
+        </div>
+      </div>
+
+      <!-- Marketplace Search -->
       <div class="marketplace">
         <div class="mp-head">
           <h3>🔍 Rechercher sur les marketplaces</h3>
-          <p class="muted">Trouvez vos vrais appareils et ajoutez-les avec leur puissance réelle.</p>
+          <p class="muted">Trouvez vos appareils réels avec leur consommation précise.</p>
         </div>
         <div class="mp-search">
           <select id="mp-source" aria-label="Source marketplace">
@@ -138,7 +149,7 @@
             <option value="aliexpress">AliExpress</option>
             <option value="alibaba">Alibaba</option>
           </select>
-          <input id="mp-query" type="text" placeholder="Ex : climatiseur 12000 btu, réfrigérateur…" aria-label="Recherche appareil">
+          <input id="mp-query" type="text" placeholder="Ex : climatiseur 12000 btu, réfrigérateur A+…" aria-label="Recherche appareil">
           <button id="mp-search-btn" class="primary" aria-label="Lancer la recherche">
             <svg class="ic"><use href="#ic-search"/></svg> Rechercher
           </button>
@@ -159,7 +170,18 @@
         <div id="mp-results" class="mp-results"></div>
       </div>
 
-      <!-- Config -->
+      <!-- Inventaire d'appareils sélectionnés (Cart List) -->
+      <div class="inventory-section">
+        <div class="inv-head">
+          <h3>📋 Mon inventaire d'appareils</h3>
+          <span class="inv-badge" id="inv-count-badge">0 appareil</span>
+        </div>
+        <div class="inventory-list" id="inventory-list">
+          <div class="inv-empty">Aucun appareil sélectionné. Ajoutez des appareils ci-dessus ou via la recherche.</div>
+        </div>
+      </div>
+
+      <!-- Config & Params -->
       <div class="config-right">
         <div class="grid2">
           <label class="field">
