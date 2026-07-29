@@ -1,0 +1,42 @@
+services:
+  el-nour-power:
+    build: .
+    image: el-nour-power:latest
+    container_name: el-nour-power
+    ports:
+      - "8080:8080"
+    environment:
+      - APP_DEFAULT_CITY=Tunis
+      - APP_DEFAULT_LAT=36.81897
+      - APP_DEFAULT_LON=10.16579
+      - APP_OUTAGE_HOURS=48
+      - SCRAPER_URL=http://scraper:5000
+    volumes:
+      - ./data:/data
+    depends_on:
+      scraper:
+        condition: service_healthy
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/api/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 25s
+
+  scraper:
+    build: ./scraper
+    container_name: el-nour-scraper
+    environment:
+      - PYTHONUNBUFFERED=1
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:5000/health')"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    deploy:
+      resources:
+        limits:
+          memory: 1g

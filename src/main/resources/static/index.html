@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0C0C10">
+  <meta name="description" content="El Nour Power — Dimensionnement énergétique solaire pour la Tunisie. Calculez vos besoins, batterie, source d'énergie et aide PROSOL ELEC.">
+  <title>El Nour Power — Énergie solaire Tunisie</title>
+  <link rel="stylesheet" href="/style.css">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+</head>
+<body>
+
+<!-- ====== Sprite SVG d'icônes ====== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="ic-calc" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="8" y2="10"/><line x1="12" y1="10" x2="12" y2="10"/><line x1="16" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="8" y2="14"/><line x1="12" y1="14" x2="12" y2="14"/><line x1="16" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="12" y2="18"/></symbol>
+    <symbol id="ic-users" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+    <symbol id="ic-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+    <symbol id="ic-close" viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></symbol>
+    <symbol id="ic-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></symbol>
+    <symbol id="ic-plus" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+    <symbol id="ic-check" viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></symbol>
+    <symbol id="ic-minus" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/></symbol>
+    <symbol id="ic-bolt" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+    <symbol id="ic-battery" viewBox="0 0 24 24"><rect x="2" y="7" width="18" height="10" rx="2"/><line x1="22" y1="11" x2="22" y2="13"/><line x1="6" y1="11" x2="6" y2="13"/></symbol>
+    <symbol id="ic-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="2" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="22" y2="12"/><line x1="4.93" y1="4.93" x2="6.34" y2="6.34"/><line x1="17.66" y1="17.66" x2="19.07" y2="19.07"/><line x1="4.93" y1="19.07" x2="6.34" y2="17.66"/><line x1="17.66" y1="6.34" x2="19.07" y2="4.93"/></symbol>
+    <symbol id="ic-cog" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></symbol>
+    <symbol id="ic-plug" viewBox="0 0 24 24"><path d="M9 2v6"/><path d="M15 2v6"/><path d="M6 8h12v3a6 6 0 0 1-12 0z"/><line x1="12" y1="17" x2="12" y2="22"/></symbol>
+    <symbol id="ic-snow" viewBox="0 0 24 24"><line x1="12" y1="2" x2="12" y2="22"/><line x1="2" y1="12" x2="22" y2="12"/><line x1="4.5" y1="4.5" x2="19.5" y2="19.5"/><line x1="19.5" y1="4.5" x2="4.5" y2="19.5"/></symbol>
+    <symbol id="ic-flame" viewBox="0 0 24 24"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></symbol>
+    <symbol id="ic-wash" viewBox="0 0 24 24"><rect x="3" y="2" width="18" height="20" rx="2"/><circle cx="12" cy="13" r="5"/><line x1="7" y1="6" x2="7" y2="6"/><line x1="12" y1="9.5" x2="12" y2="16.5"/><path d="M9.5 12h5"/></symbol>
+    <symbol id="ic-lightbulb" viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"/></symbol>
+    <symbol id="ic-monitor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></symbol>
+    <symbol id="ic-drop" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></symbol>
+    <symbol id="ic-box" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></symbol>
+    <symbol id="ic-external" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></symbol>
+    <symbol id="ic-alert" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12" y2="17"/></symbol>
+    <symbol id="ic-trash" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></symbol>
+  </defs>
+</svg>
+
+<!-- ====== TOAST NOTIFICATION ====== -->
+<div id="toast" role="alert" aria-live="polite"></div>
+
+<!-- ============ ÉCRAN AUTH ============ -->
+<div class="auth-screen" id="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo-wrap">
+      <div class="auth-logo-ring">
+        <img src="/logo.svg" alt="El Nour Power">
+      </div>
+    </div>
+    <h1>El Nour Power</h1>
+    <p class="auth-sub">Énergie solaire · Tunisie 🇹🇳</p>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" data-mode="login" id="tab-login">Connexion</button>
+      <button class="auth-tab" data-mode="register" id="tab-register">Créer un compte</button>
+    </div>
+
+    <form id="auth-form">
+      <input type="hidden" name="mode" value="login">
+      <input type="text" name="nom" placeholder="Nom complet" class="reg-only hidden">
+      <input type="email" name="email" placeholder="Adresse email" required autocomplete="email">
+      <input type="password" name="password" placeholder="Mot de passe" required minlength="6" autocomplete="current-password">
+      <div id="auth-error" class="auth-error hidden"></div>
+      <button type="submit" class="primary" id="auth-submit">Se connecter</button>
+    </form>
+    <p class="auth-hint">🔒 Données privées · Mots de passe chiffrés BCrypt</p>
+  </div>
+</div>
+
+<!-- ============ APP ============ -->
+<div class="app hidden" id="app">
+
+  <!-- TOPBAR -->
+  <header class="topbar">
+    <div class="brand">
+      <img src="/logo.svg" alt="El Nour Power" class="logo">
+      <div>
+        <h1>El Nour Power</h1>
+        <p class="tag" id="user-tag">—</p>
+      </div>
+    </div>
+    <button class="ghost-icon" id="logout-btn" title="Déconnexion" aria-label="Déconnexion">
+      <svg class="ic"><use href="#ic-logout"/></svg>
+    </button>
+  </header>
+
+  <!-- SIDEBAR DESKTOP (cachée sur mobile) -->
+  <aside class="desktop-sidebar" id="desktop-sidebar" style="display:none">
+    <div class="sidebar-section-label">Navigation</div>
+    <button class="sidebar-item active" data-tab="calc" id="snav-calc">
+      <svg class="ic"><use href="#ic-bolt"/></svg> Calculateur
+    </button>
+    <button class="sidebar-item" data-tab="crm" id="snav-crm">
+      <svg class="ic"><use href="#ic-users"/></svg> Contacts &amp; RDV
+    </button>
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-section-label">Étapes</div>
+    <button class="sidebar-item" onclick="document.getElementById('step-config')?.scrollIntoView({behavior:'smooth'})">
+      <svg class="ic"><use href="#ic-search"/></svg> Appareils
+    </button>
+    <button class="sidebar-item" onclick="document.getElementById('step-weather')?.scrollIntoView({behavior:'smooth'})">
+      <svg class="ic"><use href="#ic-sun"/></svg> Météo
+    </button>
+    <button class="sidebar-item" onclick="document.getElementById('step-consumption')?.scrollIntoView({behavior:'smooth'})">
+      <svg class="ic"><use href="#ic-bolt"/></svg> Consommation
+    </button>
+    <button class="sidebar-item" onclick="document.getElementById('step-battery')?.scrollIntoView({behavior:'smooth'})">
+      <svg class="ic"><use href="#ic-battery"/></svg> Batterie
+    </button>
+    <button class="sidebar-item" onclick="document.getElementById('step-source')?.scrollIntoView({behavior:'smooth'})">
+      <svg class="ic"><use href="#ic-sun"/></svg> Source &amp; Budget
+    </button>
+    <button class="sidebar-item" onclick="document.getElementById('step-steg')?.scrollIntoView({behavior:'smooth'})">
+      <svg class="ic"><use href="#ic-alert"/></svg> STEG &amp; PROSOL
+    </button>
+  </aside>
+
+  <!-- ===== ONGLET CALCULATEUR ===== -->
+  <main class="container tab-panel active" id="panel-calc">
+
+    <section class="card" id="step-config">
+      <h2>Mes appareils</h2>
+
+      <!-- Marketplace -->
+      <div class="marketplace">
+        <div class="mp-head">
+          <h3>🔍 Rechercher sur les marketplaces</h3>
+          <p class="muted">Trouvez vos vrais appareils et ajoutez-les avec leur puissance réelle.</p>
+        </div>
+        <div class="mp-search">
+          <select id="mp-source" aria-label="Source marketplace">
+            <option value="all">Tous les fournisseurs</option>
+            <option value="banggood">Banggood</option>
+            <option value="aliexpress">AliExpress</option>
+            <option value="alibaba">Alibaba</option>
+          </select>
+          <input id="mp-query" type="text" placeholder="Ex : climatiseur 12000 btu, réfrigérateur…" aria-label="Recherche appareil">
+          <button id="mp-search-btn" class="primary" aria-label="Lancer la recherche">
+            <svg class="ic"><use href="#ic-search"/></svg> Rechercher
+          </button>
+        </div>
+        <div class="mp-suggestions">
+          <span class="muted">Suggestions :</span>
+          <button class="suggest" data-q="climatiseur">Climatiseur</button>
+          <button class="suggest" data-q="réfrigérateur">Réfrigérateur</button>
+          <button class="suggest" data-q="lave linge">Lave-linge</button>
+          <button class="suggest" data-q="four électrique">Four</button>
+          <button class="suggest" data-q="téléviseur LED">TV</button>
+          <button class="suggest" data-q="chauffe eau electrique">Chauffe-eau</button>
+        </div>
+        <div id="mp-loading" class="mp-loading hidden">
+          <span class="loading"></span>
+          <span id="mp-loading-text">Recherche…</span>
+        </div>
+        <div id="mp-results" class="mp-results"></div>
+      </div>
+
+      <!-- Config -->
+      <div class="config-right">
+        <div class="grid2">
+          <label class="field">
+            <span>Ville</span>
+            <input id="city" type="text" placeholder="Tunis" value="Tunis" autocomplete="off">
+          </label>
+          <label class="field">
+            <span>Coupure à couvrir</span>
+            <select id="outage" aria-label="Durée coupure">
+              <option value="24">24 heures</option>
+              <option value="48" selected>48 heures (2 jours)</option>
+              <option value="72">72 heures (3 jours)</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="grid2">
+          <label class="field switch-line">
+            <input id="usePlugs" type="checkbox">
+            <span>Prises connectées (live)</span>
+          </label>
+          <label class="field switch-line">
+            <input id="preferRent" type="checkbox">
+            <span>Préférer la location</span>
+          </label>
+        </div>
+
+        <div class="cart">
+          <div class="cart-info" id="cart-info">Aucun appareil sélectionné</div>
+          <button id="compute" class="primary">
+            <svg class="ic"><use href="#ic-bolt"/></svg>
+            Calculer mes besoins
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="card hidden" id="step-weather">
+      <h2>Météo 3 jours</h2>
+      <div id="weather-grid" class="weather-grid"></div>
+      <p class="muted" id="weather-loc"></p>
+    </section>
+
+    <section class="card hidden" id="step-consumption">
+      <h2>Besoins de puissance</h2>
+      <p class="muted" id="basis-info"></p>
+      <div class="kpis" id="kpis"></div>
+      <div class="chart" id="daynight-chart"></div>
+      <div class="legend" id="cat-breakdown"></div>
+    </section>
+
+    <section class="card hidden" id="step-battery">
+      <h2>Stockage batterie</h2>
+      <div id="battery-pick"></div>
+    </section>
+
+    <section class="card hidden" id="step-source">
+      <h2>Source d'énergie &amp; budget</h2>
+      <div class="source-budget-row">
+        <div id="source-picks"></div>
+        <div class="budget" id="budget"></div>
+      </div>
+    </section>
+
+    <section class="card hidden" id="step-steg">
+      <h2>Facture STEG &amp; PROSOL ELEC</h2>
+      <div id="steg-block"></div>
+    </section>
+
+    <section class="card hidden" id="step-plugs">
+      <h2>Prises connectées (live)</h2>
+      <div id="plug-list"></div>
+    </section>
+
+  </main>
+
+  <!-- ===== ONGLET CRM ===== -->
+  <main class="container tab-panel" id="panel-crm">
+
+    <section class="card">
+      <h2>Prochains rendez-vous</h2>
+      <div id="upcoming-appts"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Clients</h2>
+        <button class="ghost small" id="add-client-btn"><svg class="ic"><use href="#ic-plus"/></svg> Nouveau</button>
+      </div>
+      <div id="client-list"></div>
+      <form class="crm-form hidden" id="client-form">
+        <div class="grid2">
+          <input name="nom" placeholder="Nom *" required>
+          <input name="prenom" placeholder="Prénom">
+          <input name="telephone" placeholder="Téléphone" type="tel">
+          <input name="email" placeholder="Email" type="email">
+          <input name="ville" placeholder="Ville">
+          <input name="adresse" placeholder="Adresse">
+        </div>
+        <textarea name="notes" placeholder="Notes" rows="2"></textarea>
+        <div class="form-actions">
+          <button type="submit" class="primary small">Enregistrer</button>
+          <button type="button" class="ghost small cancel-btn">Annuler</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Partenaires</h2>
+        <button class="ghost small" id="add-partner-btn"><svg class="ic"><use href="#ic-plus"/></svg> Nouveau</button>
+      </div>
+      <div id="partner-list"></div>
+      <form class="crm-form hidden" id="partner-form">
+        <div class="grid2">
+          <input name="nom" placeholder="Nom *" required>
+          <select name="type" aria-label="Type partenaire">
+            <option value="INSTALLATEUR">Installateur</option>
+            <option value="FOURNISSEUR">Fournisseur</option>
+            <option value="DISTRIBUTEUR">Distributeur</option>
+          </select>
+          <input name="telephone" placeholder="Téléphone" type="tel">
+          <input name="email" placeholder="Email" type="email">
+          <input name="zone" placeholder="Zone d'intervention">
+        </div>
+        <textarea name="notes" placeholder="Notes" rows="2"></textarea>
+        <div class="form-actions">
+          <button type="submit" class="primary small">Enregistrer</button>
+          <button type="button" class="ghost small cancel-btn">Annuler</button>
+        </div>
+      </form>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Tous les rendez-vous</h2>
+        <button class="ghost small" id="add-appt-btn"><svg class="ic"><use href="#ic-plus"/></svg> Nouveau</button>
+      </div>
+      <div id="appt-list"></div>
+      <form class="crm-form hidden" id="appt-form">
+        <div class="grid2">
+          <input name="titre" placeholder="Titre *" required>
+          <input name="dateTime" type="datetime-local" required>
+          <select name="clientId" aria-label="Client"><option value="">— Client —</option></select>
+          <select name="partnerId" aria-label="Partenaire"><option value="">— Partenaire —</option></select>
+          <select name="type" aria-label="Type RDV">
+            <option value="VISITE">Visite</option>
+            <option value="DEVIS">Devis</option>
+            <option value="INSTALLATION">Installation</option>
+            <option value="SUIVI">Suivi</option>
+          </select>
+          <select name="statut" aria-label="Statut">
+            <option value="PLANIFIE">Planifié</option>
+            <option value="CONFIRME">Confirmé</option>
+            <option value="TERMINE">Terminé</option>
+            <option value="ANNULE">Annulé</option>
+          </select>
+        </div>
+        <textarea name="notes" placeholder="Notes" rows="2"></textarea>
+        <div class="form-actions">
+          <button type="submit" class="primary small">Enregistrer</button>
+          <button type="button" class="ghost small cancel-btn">Annuler</button>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- BOTTOM NAV -->
+  <nav class="bottom-nav" id="bottom-nav" role="navigation" aria-label="Navigation principale">
+    <button class="bnav-item active" data-tab="calc" id="bnav-calc" aria-label="Calculateur">
+      <svg class="ic"><use href="#ic-bolt"/></svg>
+      <span>Calculateur</span>
+    </button>
+    <button class="bnav-item" data-tab="crm" id="bnav-crm" aria-label="Contacts et RDV">
+      <svg class="ic"><use href="#ic-users"/></svg>
+      <span>Contacts</span>
+    </button>
+  </nav>
+
+</div>
+
+<footer class="foot hidden" id="footer">
+  <p>El Nour Power · Open-Meteo · Tarifs STEG &amp; PROSOL ELEC 2026</p>
+</footer>
+
+<script src="/app.js"></script>
+</body>
+</html>

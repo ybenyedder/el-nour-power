@@ -1,0 +1,35 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: el-nour-power
+  jackson:
+    default-property-inclusion: non_null
+  datasource:
+    url: jdbc:h2:file:/data/elnourdb;DB_CLOSE_DELAY=-1;AUTO_SERVER=TRUE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: false
+  h2:
+    console:
+      enabled: true
+      path: /h2-console
+app:
+  default-city: Tunis
+  default-lat: 36.81897
+  default-lon: 10.16579
+  outage-hours: 48
+  jwt:
+    secret: ${JWT_SECRET:Y2hhbmdlLW1lLXByb2R1Y3Rpb24tc2VjcmV0LWtleS1lbC1ub3VyLXBvd2VyLTI1Ni1iaXRz}
+    expiration-hours: 72
+logging:
+  level:
+    com.elnourpower: INFO
+    org.hibernate.SQL: WARN

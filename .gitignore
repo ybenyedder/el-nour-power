@@ -1,0 +1,36 @@
+# Gradle & Build outputs
+.gradle/
+build/
+out/
+bin/
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+.settings/
+.classpath
+.project
+
+# Databases & local dynamic data
+data/*.db
+data/*.mv.db
+data/*.trace.db
+data/*.lock.db
+
+# Python & Scraper artifacts
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+.pytest_cache/
+
+# Environment & Secret files
+.env
+*.local
+
+# System files
+.DS_Store
+Thumbs.db
