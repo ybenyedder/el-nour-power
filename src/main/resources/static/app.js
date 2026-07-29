@@ -5,8 +5,7 @@ const fmt = (n) => Math.round(n).toLocaleString('fr-FR');
 const fmt1 = (n) => (Math.round(n*10)/10).toLocaleString('fr-FR');
 const fmt2 = (n) => (Math.round(n*100)/100).toLocaleString('fr-FR');
 
-const TOKEN_KEY = 'elnp_token';
-const USER_KEY = 'elnp_user';
+
 
 // Icônes & labels par catégorie
 const CAT_ICONS = {
@@ -43,17 +42,11 @@ const DEFAULT_POWER_BY_CAT = {
   LIGHTING: 60, ELECTRONICS: 150, WATER: 1500, HEATING: 1800, OTHER: 800
 };
 
-// API Fetch avec JWT
+// API Fetch
 async function api(path, opts = {}) {
-  const token = localStorage.getItem(TOKEN_KEY);
   const headers = { ...(opts.headers || {}) };
-  if (token) headers['Authorization'] = 'Bearer ' + token;
   if (opts.body && !headers['Content-Type']) headers['Content-Type'] = 'application/json';
   const res = await fetch(path, { ...opts, headers });
-  if (res.status === 401 || res.status === 403) {
-    logout();
-    throw new Error('Session expirée');
-  }
   if (!res.ok) {
     let msg = 'Erreur ' + res.status;
     try { const j = await res.json(); msg = j.error || j.message || msg; } catch {}
@@ -62,74 +55,13 @@ async function api(path, opts = {}) {
   return res.status === 204 ? null : res.json();
 }
 
-// ===================== AUTH =====================
-function isLoggedIn() { return !!localStorage.getItem(TOKEN_KEY); }
-
+// ===================== APP INIT =====================
 function showApp() {
-  $('auth-screen').classList.add('hidden');
-  $('app').classList.remove('hidden');
-  $('footer').classList.remove('hidden');
-  const user = JSON.parse(localStorage.getItem(USER_KEY) || '{}');
-  $('user-tag').textContent = user.email || '—';
+  $('user-tag').textContent = 'Mode Local';
   initQuickCatalog();
   renderInventory();
   updateCart();
 }
-
-function showAuth() {
-  $('app').classList.add('hidden');
-  $('footer').classList.add('hidden');
-  $('auth-screen').classList.remove('hidden');
-}
-
-function logout() {
-  localStorage.removeItem(TOKEN_KEY);
-  localStorage.removeItem(USER_KEY);
-  showAuth();
-}
-$('logout-btn').onclick = logout;
-
-// Auth Tab switch
-document.querySelectorAll('.auth-tab').forEach(t => {
-  t.onclick = () => {
-    document.querySelectorAll('.auth-tab').forEach(x => x.classList.remove('active'));
-    t.classList.add('active');
-    const mode = t.dataset.mode;
-    $('auth-form').elements.mode.value = mode;
-    document.querySelectorAll('.reg-only').forEach(el => el.classList.toggle('hidden', mode !== 'register'));
-    $('auth-submit').textContent = mode === 'register' ? 'Créer mon compte' : 'Se connecter';
-    $('auth-error').classList.add('hidden');
-  };
-});
-
-$('auth-form').onsubmit = async (e) => {
-  e.preventDefault();
-  const fd = new FormData(e.target);
-  const mode = fd.get('mode');
-  const errEl = $('auth-error');
-  errEl.classList.add('hidden');
-  $('auth-submit').innerHTML = '<span class="loading"></span>';
-  $('auth-submit').disabled = true;
-  try {
-    const body = { email: fd.get('email'), password: fd.get('password') };
-    if (mode === 'register') body.nom = fd.get('nom');
-    const res = await fetch('/api/auth/' + mode, {
-      method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify(body)
-    });
-    const data = await res.json();
-    if (!res.ok) throw new Error(data.error || data.message || 'Échec d\'authentification');
-    localStorage.setItem(TOKEN_KEY, data.token);
-    localStorage.setItem(USER_KEY, JSON.stringify({ userId: data.userId, email: data.email, nom: data.nom }));
-    e.target.reset();
-    showApp();
-  } catch (err) {
-    errEl.textContent = err.message;
-    errEl.classList.remove('hidden');
-  } finally {
-    $('auth-submit').textContent = $('auth-form').elements.mode.value === 'register' ? 'Créer mon compte' : 'Se connecter';
-    $('auth-submit').disabled = false;
-  }
-};
 
 // ===================== NAVIGATION =====================
 function switchTab(tabName) {
@@ -659,4 +591,4 @@ $('partner-form').onsubmit = async (e) => { e.preventDefault(); const data = Obj
 $('appt-form').onsubmit = async (e) => { e.preventDefault(); const fd = new FormData(e.target); const data = { titre: fd.get('titre'), clientId: fd.get('clientId')||null, partnerId: fd.get('partnerId')||null, dateTime: fd.get('dateTime'), type: fd.get('type'), statut: fd.get('statut'), notes: fd.get('notes') }; await api('/api/appointments',{method:'POST',body:JSON.stringify(data)}); e.target.reset(); $('appt-form').classList.add('hidden'); loadCrm(); };
 
 // INITIALISATION
-if (isLoggedIn()) showApp(); else showAuth();
+showApp();

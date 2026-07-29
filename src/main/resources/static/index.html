@@ -43,36 +43,10 @@
 <!-- ====== TOAST NOTIFICATION ====== -->
 <div id="toast" role="alert" aria-live="polite"></div>
 
-<!-- ============ ÉCRAN AUTH ============ -->
-<div class="auth-screen" id="auth-screen">
-  <div class="auth-card">
-    <div class="auth-logo-wrap">
-      <div class="auth-logo-ring">
-        <img src="/logo.svg" alt="El Nour Power">
-      </div>
-    </div>
-    <h1>El Nour Power</h1>
-    <p class="auth-sub">Énergie solaire · Tunisie 🇹🇳</p>
 
-    <div class="auth-tabs">
-      <button class="auth-tab active" data-mode="login" id="tab-login">Connexion</button>
-      <button class="auth-tab" data-mode="register" id="tab-register">Créer un compte</button>
-    </div>
-
-    <form id="auth-form">
-      <input type="hidden" name="mode" value="login">
-      <input type="text" name="nom" placeholder="Nom complet" class="reg-only hidden">
-      <input type="email" name="email" placeholder="Adresse email" required autocomplete="email">
-      <input type="password" name="password" placeholder="Mot de passe" required minlength="6" autocomplete="current-password">
-      <div id="auth-error" class="auth-error hidden"></div>
-      <button type="submit" class="primary" id="auth-submit">Se connecter</button>
-    </form>
-    <p class="auth-hint">🔒 Données privées · Mots de passe chiffrés BCrypt</p>
-  </div>
-</div>
 
 <!-- ============ APP ============ -->
-<div class="app hidden" id="app">
+<div class="app" id="app">
 
   <!-- TOPBAR -->
   <header class="topbar">
@@ -83,9 +57,7 @@
         <p class="tag" id="user-tag">—</p>
       </div>
     </div>
-    <button class="ghost-icon" id="logout-btn" title="Déconnexion" aria-label="Déconnexion">
-      <svg class="ic"><use href="#ic-logout"/></svg>
-    </button>
+
   </header>
 
   <!-- SIDEBAR DESKTOP (cachée sur mobile) -->
@@ -353,7 +325,7 @@
 
 </div>
 
-<footer class="foot hidden" id="footer">
+<footer class="foot" id="footer">
   <p>El Nour Power · Open-Meteo · Tarifs STEG &amp; PROSOL ELEC 2026</p>
 </footer>
 

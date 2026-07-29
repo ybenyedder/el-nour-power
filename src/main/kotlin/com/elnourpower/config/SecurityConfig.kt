@@ -35,7 +35,7 @@ class SecurityConfig(private val jwtAuthFilter: JwtAuthFilter) {
                         "/", "/index.html", "/logo.svg", "/style.css", "/app.js",
                         "/h2-console/**"
                     ).permitAll()
-                    .anyRequest().authenticated()
+                    .anyRequest().permitAll()
             }
             .headers { it.frameOptions { fo -> fo.disable() } } // pour h2-console
             .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter::class.java)
